@@ -1,9 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
 import Head from "next/head";
+import Link from "next/link";
+import { useState } from "react";
 export default function Register() {
+  const [visiblePassword, setVisiblePassword] = useState(false);
+  const [visiblePasswordConfirmation, setVisiblePasswordConfirmation] =
+    useState(false);
   return (
     <>
       <Head>
-        <title>Pokechain | Sign in</title>
+        <title>Pokechain | Sign up</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div
@@ -25,7 +32,7 @@ export default function Register() {
                 alt="Pokechain"
               />
               <h2 className="mt-6 text-3xl font-extrabold text-white">
-                Sign in to your account
+                Sign up to your account
               </h2>
             </div>
 
@@ -52,7 +59,7 @@ export default function Register() {
                           d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
                         ></path>
                       </svg>
-                      Sign in with Google
+                      Sign up with Google
                     </button>
                   </div>
                 </div>
@@ -62,7 +69,7 @@ export default function Register() {
                     <div className="w-full border-t border-gray-600" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-gray-900 text-slate-300">
+                    <span className="px-2 bg-[#0C1831] text-slate-300">
                       Or continue with
                     </span>
                   </div>
@@ -76,7 +83,25 @@ export default function Register() {
                       htmlFor="email"
                       className="block text-sm font-medium text-slate-300"
                     >
-                      Username or Email
+                      Full Name
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        id="fullname"
+                        name="fullname"
+                        type="text"
+                        autoComplete="email"
+                        required
+                        className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-slate-300"
+                    >
+                      Email
                     </label>
                     <div className="mt-1">
                       <input
@@ -85,35 +110,89 @@ export default function Register() {
                         type="email"
                         autoComplete="email"
                         required
-                        className="appearance-none block w-full px-3 py-1 sm:py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label
-                      htmlFor="password"
+                      htmlFor="email"
                       className="block text-sm font-medium text-slate-300"
                     >
                       Password
                     </label>
-                    <div className="mt-1">
+                    <div className="relative mt-1">
+                      <div className="absolute inset-y-0 right-0 flex items-center px-2">
+                        <input
+                          className="hidden js-password-toggle"
+                          id="toggle"
+                          type="checkbox"
+                        />
+                        <label
+                          onClick={() => setVisiblePassword(!visiblePassword)}
+                          className="bg-transparent text-slate-300 rounded px-2 py-1 text-sm font-mono cursor-pointer js-password-label"
+                          htmlFor="toggle"
+                        >
+                          {visiblePassword ? (
+                            <EyeIcon className="w-5 h-5" />
+                          ) : (
+                            <EyeOffIcon className="w-5 h-5" />
+                          )}
+                        </label>
+                      </div>
                       <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
+                        type={visiblePassword ? "text" : "password"}
                         required
-                        className="appearance-none block w-full px-3 py-1 sm:py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-slate-300"
+                    >
+                      Password Confirmation
+                    </label>
+                    <div className="relative mt-1">
+                      <div className="absolute inset-y-0 right-0 flex items-center px-2">
+                        <input
+                          className="hidden js-password-toggle"
+                          id="toggle"
+                          type="checkbox"
+                        />
+                        <label
+                          onClick={() =>
+                            setVisiblePasswordConfirmation(
+                              !visiblePasswordConfirmation
+                            )
+                          }
+                          className="bg-transparent text-slate-300 rounded px-2 py-1 text-sm font-mono cursor-pointer js-password-label"
+                          htmlFor="toggle"
+                        >
+                          {visiblePasswordConfirmation ? (
+                            <EyeIcon className="w-5 h-5" />
+                          ) : (
+                            <EyeOffIcon className="w-5 h-5" />
+                          )}
+                        </label>
+                      </div>
+                      <input
+                        type={visiblePasswordConfirmation ? "text" : "password"}
+                        required
+                        className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between ">
                     <div className="text-xs sm:text-sm">
-                      <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
-                        Don't Have Account?
-                      </div>
+                      <Link href={"/auth/login"}>
+                        <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
+                          Already Have Account?
+                        </div>
+                      </Link>
                     </div>
                     <div className="text-xs sm:text-sm">
                       <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
@@ -124,10 +203,10 @@ export default function Register() {
 
                   <div>
                     <button
-                      type="button"
+                      type="submit"
                       className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white  bg-[#3D00B7] hover:bg-[#3d00b7a1] focus:outline-none"
                     >
-                      Sign in
+                      Sign up
                     </button>
                   </div>
                 </form>

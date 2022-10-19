@@ -1,12 +1,11 @@
-/* This example requires Tailwind CSS v2.0+ */
+/* eslint-disable @next/next/no-img-element */
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
+import Link from "next/link";
 
 export default function LoginModal({ open, setOpen }) {
-  //   const [open, setOpen] = useState(true)
-
   const cancelButtonRef = useRef(null);
 
   return (
@@ -96,7 +95,7 @@ export default function LoginModal({ open, setOpen }) {
                             type="email"
                             autoComplete="email"
                             required
-                            className="appearance-none block w-full px-3 py-1 sm:py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="appearance-none block w-full px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
                       </div>
@@ -115,16 +114,18 @@ export default function LoginModal({ open, setOpen }) {
                             type="password"
                             autoComplete="current-password"
                             required
-                            className="appearance-none block w-full px-3 py-1 sm:py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="appearance-none block w-full px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
                       </div>
 
                       <div className="flex items-center justify-between ">
                         <div className="text-xs sm:text-sm">
-                          <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
-                            Don't Have Account?
-                          </div>
+                          <Link href={"/auth/register"}>
+                            <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
+                              {"Don't Have Account?"}
+                            </div>
+                          </Link>
                         </div>
                         <div className="text-xs sm:text-sm">
                           <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">

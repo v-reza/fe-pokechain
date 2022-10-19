@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 export default function Login() {
   return (
     <>
@@ -111,9 +112,11 @@ export default function Login() {
 
                   <div className="flex items-center justify-between ">
                     <div className="text-xs sm:text-sm">
-                      <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
-                        Don't Have Account?
-                      </div>
+                      <Link href={"/auth/register"}>
+                        <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
+                          {"Don't Have Account?"}
+                        </div>
+                      </Link>
                     </div>
                     <div className="text-xs sm:text-sm">
                       <div className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">
@@ -124,7 +127,7 @@ export default function Login() {
 
                   <div>
                     <button
-                      type="button"
+                      type="submit"
                       className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white  bg-[#3D00B7] hover:bg-[#3d00b7a1] focus:outline-none"
                     >
                       Sign in
