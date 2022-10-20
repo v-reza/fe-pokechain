@@ -5,17 +5,7 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/solid";
 import { Combobox } from "@headlessui/react";
-
-const people = [
-  {
-    id: 1,
-    name: "Leslie Alexander",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  // More users...
-];
-
+import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import {
@@ -27,16 +17,25 @@ import {
 } from "@heroicons/react/outline";
 import { StarIcon } from "@heroicons/react/solid";
 import { navigation, features, footerNavigation } from "@/utils/navigation";
-
 import { classNames } from "@/utils/constant";
 import Head from "next/head";
 import LoginModal from "@/components/AuthPages/Login";
 import Link from "next/link";
 
-export default function Example() {
+const people = [
+  {
+    id: 1,
+    name: "Leslie Alexander",
+    imageUrl:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  },
+];
+export default function Home() {
   const [query, setQuery] = useState("");
   const [selectedPerson, setSelectedPerson] = useState();
   const [openAuthModal, setOpenAuthModal] = useState(false);
+
+  const router = useRouter()
 
   const filteredPeople =
     query === ""
@@ -109,13 +108,17 @@ export default function Example() {
                   </div>
                   <div className="hidden space-x-8 md:flex md:ml-10">
                     {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="text-base font-medium text-white hover:text-gray-300"
-                      >
-                        {item.name}
-                      </a>
+                      <Link key={item.name} href={item.href}>
+                        <div
+                          key={item.name}
+                          className="cursor-pointer text-base  text-white hover:text-gray-300"
+                        >
+                          <span className={`${router.pathname === item.href ? "text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-600" : "font-medium"}`}>
+
+                          {item.name}
+                          </span>
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -237,13 +240,14 @@ export default function Example() {
                   <div className="pt-5 pb-6">
                     <div className="px-2 space-y-1">
                       {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                        >
-                          {item.name}
-                        </a>
+                        <Link key={item.name} href={item.href}>
+                          <div
+                            key={item.name}
+                            className="cursor-pointer block px-3 py-2 rounded-md text-base text-gray-900 hover:bg-gray-50"
+                          >
+                            <span className={`font-medium`}>{item.name}</span>
+                          </div>
+                        </Link>
                       ))}
                     </div>
                     <div className="mt-6 px-5">

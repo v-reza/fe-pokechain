@@ -7,6 +7,12 @@ export default function Register() {
   const [visiblePassword, setVisiblePassword] = useState(false);
   const [visiblePasswordConfirmation, setVisiblePasswordConfirmation] =
     useState(false);
+  const [form, setForm] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  });
   return (
     <>
       <Head>
@@ -92,6 +98,10 @@ export default function Register() {
                         type="text"
                         autoComplete="email"
                         required
+                        value={form.fullname}
+                        onChange={(e) =>
+                          setForm({ ...form, fullname: e.target.value })
+                        }
                         className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -110,6 +120,10 @@ export default function Register() {
                         type="email"
                         autoComplete="email"
                         required
+                        value={form.email}
+                        onChange={(e) =>
+                          setForm({ ...form, email: e.target.value })
+                        }
                         className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -144,6 +158,10 @@ export default function Register() {
                       <input
                         type={visiblePassword ? "text" : "password"}
                         required
+                        value={form.password}
+                        onChange={(e) =>
+                          setForm({ ...form, password: e.target.value })
+                        }
                         className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -181,6 +199,13 @@ export default function Register() {
                       <input
                         type={visiblePasswordConfirmation ? "text" : "password"}
                         required
+                        value={form.passwordConfirmation}
+                        onChange={(e) =>
+                          setForm({
+                            ...form,
+                            passwordConfirmation: e.target.value,
+                          })
+                        }
                         className="bg-slate-700/20 appearance-none block w-full px-3 text-white py-2 border border-slate-600 rounded-md shadow-sm placeholder-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
