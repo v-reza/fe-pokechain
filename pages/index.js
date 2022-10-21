@@ -48,7 +48,7 @@ export default function Home() {
           />
         </Head>
         <div className="relative overflow-hidden">
-          <Popover as="header" className="relative">
+          <Popover as="header" className="relative z-20">
             <div className="pt-6 pb-4">
               <nav
                 className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
@@ -183,25 +183,31 @@ export default function Home() {
             </Transition>
           </Popover>
           <main>
-            <div className="overflow-hidden sm:pt-12 lg:relative lg:py-36 xl:py-40">
-              <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-1 lg:gap-24">
-                <div className="mt-20 sm:mt-0">
-                  <div className="sm:max-w-xl">
-                    <h1 className="text-4xl font-extrabold text-white tracking-tight sm:text-5xl">
+            <div className="overflow-hidden sm:pt-12 lg:relative lg:py-20">
+              <div className="mx-auto mt-8 sm:mt-0 sm:px-6 w-full flex items-center justify-center bg-[length: 100%_100%] sm:rounded-[5rem] rounded-b-3xl  shadow-xl" style={{
+                backgroundImage: "url('/assets/images/bg-pokemon.png')",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: "0.8"
+              }}>
+                <div className="mt-20 sm:mt-0 py-56 w-full flex flex-col items-center justify-center">
+                  <div className="">
+                    <h1 className="text-transparent font-extrabold tracking-tight text-3xl px-4 sm:px-0 bg-clip-text bg-gradient-to-r from-[#31e38a] to-[#bff806] sm:text-5xl">
                       DISCOVER, AND COLLECT POKEMON NFTS
                     </h1>
-                    <p className="mt-6 text-xl text-slate-300">
+                    <p className="mt-6 text-xl px-4 sm:px-0 text-transparent font-extrabold tracking-tight bg-clip-text bg-gradient-to-r from-[#f20256] to-[#ffffff]">
                       Digital Marketplace NFT Pokemon collections. Buy, sell,
                       battle, and discover exclusive digital assets
                     </p>
                   </div>
-                  <div className="mt-12 sm:max-w-lg sm:w-full sm:flex">
+                  <div className="mt-12 sm:max-w-lg sm:w-full sm:flex items-center justify-center">
                     <div className="mt-4 sm:mt-0">
                       {/* Desktop Breakpoints */}
                       <button
                         type="button"
                         onClick={() => setOpenAuthModal(true)}
-                        className="hidden sm:block w-full rounded-full border border-transparent px-5 py-3 bg-[#3D00B7] hover:bg-[#3d00b7a1] text-base font-medium text-white shadow focus:outline-none  sm:px-10"
+                        className="hidden sm:block w-full rounded-full border border-transparent px-5 py-3 bg-[#3D00B7] hover:bg-[#7e43f4] text-base font-medium text-white shadow focus:outline-none  sm:px-16"
                       >
                         Play Now
                       </button>
@@ -209,7 +215,7 @@ export default function Home() {
                       <Link href="/auth/login">
                         <button
                           type="button"
-                          className="block sm:hidden w-full rounded-full border border-transparent px-5 py-3 bg-[#3D00B7] hover:bg-[#3d00b7a1] text-base font-medium text-white shadow focus:outline-none  sm:px-10"
+                          className="block sm:hidden w-full rounded-full border border-transparent px-28 py-3 bg-[#3D00B7] hover:bg-[#3d00b7a1] text-base font-medium text-white shadow focus:outline-none  sm:px-16"
                         >
                           Play Now
                         </button>
@@ -248,76 +254,6 @@ export default function Home() {
                         <span className="font-medium text-rose-500">
                           500 beta users
                         </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="sm:mx-auto sm:max-w-3xl sm:px-6">
-                <div className="py-12 px-4 pl-4 sm:pl-0 sm:px-0 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-20 lg:w-1/3">
-                  <div
-                    className="rounded-3xl bg-gradient-to-r from-[#73E0A9] to-[#5B68DF] "
-                    style={{ padding: "1.3px" }}
-                  >
-                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-gray-900">
-                      <div
-                        className="rounded-3xl shadow-md  bg-gradient-to-r from-[#73E0A9] to-[#5B68DF] "
-                        style={{ padding: "1.3px" }}
-                      >
-                        <div className="px-8 py-8 sm:px-6 rounded-3xl shadow-md bg-gray-800 relative">
-                          <div className="flex items-center justify-center">
-                            <img
-                              className="w-40 object-cover h-full -mt-10"
-                              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
-                              alt=""
-                            />
-                          </div>
-                          <div className="w-full mt-3 flex items-center justify-center absolute">
-                            <div
-                              style={{ padding: "1.3px" }}
-                              className="bg-gradient-to-r mr-12 from-[#73E0A9] to-[#5B68DF] rounded-full "
-                            >
-                              <img
-                                className="w-10 h-10  rounded-full"
-                                src="/assets/images/profile.png"
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mt-7">
-                        <div className="flex items-center justify-center">
-                          <div className="flex-col">
-                            <div className="flex items-center justify-center">
-                              <span className="text-white text-lg font-medium">
-                                ZombieClub Token
-                              </span>
-                              <img
-                                src="/assets/images/verified-user.png"
-                                className="w-5 h-5 ml-2"
-                                alt=""
-                              />
-                            </div>
-                            <div className="flex items-center justify-center space-x-2">
-                              <span className="text-white text-md font-medium">
-                                Created by
-                              </span>
-                              <div className="text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
-                                ZombieLab
-                              </div>
-                            </div>
-                            <div className="mt-3">
-                              <span className="text-white text-sm ">
-                                Zombie Lab is a collection of 10,000 animated
-                                NFTs. Each NFT is unique and resides on the
-                                Ethereum blockchain. Your Zombie Lab Club NFT
-                                will double as your club membership.
-                              </span>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
