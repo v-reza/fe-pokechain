@@ -6,8 +6,9 @@ import {
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Marketplace", href: "/marketplace" },
-  { name: "About", href: "#" },
+  { name: "Ranking", href: "#" },
+  { name: "News", href: "#" },
+  { name: "Teams", href: "#" },
 ];
 const features = [
   {

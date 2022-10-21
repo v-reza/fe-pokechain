@@ -1,48 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  ArrowRightIcon,
-  CheckIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/solid";
-import { Combobox } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import {
-  AdjustmentsIcon,
-  FilterIcon,
-  MenuIcon,
-  SearchIcon,
-  XIcon,
-} from "@heroicons/react/outline";
-import { StarIcon } from "@heroicons/react/solid";
-import { navigation, features, footerNavigation } from "@/utils/navigation";
-import { classNames } from "@/utils/constant";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { StarIcon, ArrowRightIcon } from "@heroicons/react/solid";
+import { navigation, features } from "@/utils/navigation";
 import Head from "next/head";
 import LoginModal from "@/components/AuthPages/Login";
 import Link from "next/link";
-
-const people = [
+const whyPokechainList = [
   {
     id: 1,
-    name: "Leslie Alexander",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    description: "Buy, sell, battle, and trade your favorite Pokemon.",
+  },
+  {
+    id: 2,
+    description: "Stake NFT Pokechain to earn & redeem in-game rewards",
+  },
+  {
+    id: 3,
+    description: "Trade game items with other players",
   },
 ];
 export default function Home() {
-  const [query, setQuery] = useState("");
-  const [selectedPerson, setSelectedPerson] = useState();
   const [openAuthModal, setOpenAuthModal] = useState(false);
-
-  const router = useRouter()
-
-  const filteredPeople =
-    query === ""
-      ? people
-      : people.filter((person) => {
-          return person.name.toLowerCase().includes(query.toLowerCase());
-        });
+  const router = useRouter();
 
   return (
     <>
@@ -53,6 +35,8 @@ export default function Home() {
             "url('/assets/images/light-green.png'), url('/assets/images/light-blue.png')",
           backgroundRepeat: "no-repeat",
           backgroundBlendMode: "color",
+          backgroundSize: "100% 100%",
+          backgroundPosition: "top left, bottom right",
           opacity: "80",
         }}
       >
@@ -65,7 +49,7 @@ export default function Home() {
         </Head>
         <div className="relative overflow-hidden">
           <Popover as="header" className="relative">
-            <div className=" pt-6 pb-4">
+            <div className="pt-6 pb-4">
               <nav
                 className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
                 aria-label="Global"
@@ -81,25 +65,6 @@ export default function Home() {
                       />
                     </a>
                     <div className="-mr-2 flex items-center md:hidden">
-                      <button
-                        type="button"
-                        className="ml-auto mr-4 inline-flex items-center justify-center hover:text-slate-600 lg:hidden text-slate-400"
-                      >
-                        <span className="sr-only">Search</span>
-                        <svg
-                          width="24"
-                          height="24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="m19 19-3.5-3.5"></path>
-                          <circle cx="11" cy="11" r="6"></circle>
-                        </svg>
-                      </button>
                       <Popover.Button className="bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white">
                         <span className="sr-only">Open main menu</span>
                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
@@ -113,9 +78,14 @@ export default function Home() {
                           key={item.name}
                           className="cursor-pointer text-base  text-white hover:text-gray-300"
                         >
-                          <span className={`${router.pathname === item.href ? "text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-600" : "font-medium"}`}>
-
-                          {item.name}
+                          <span
+                            className={`${
+                              router.pathname === item.href
+                                ? "text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-600"
+                                : "font-medium"
+                            }`}
+                          >
+                            {item.name}
                           </span>
                         </div>
                       </Link>
@@ -123,86 +93,23 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="hidden md:flex md:items-center md:space-x-2 lg:space-x-12">
-                  <Combobox
-                    as="div"
-                    value={selectedPerson}
-                    onChange={setSelectedPerson}
-                  >
-                    <div className="relative mt-1">
-                      <Combobox.Input
-                        className="w-full lg:w-[28rem] xl:w-[40rem] rounded-full  border border-indigo-500 bg-transparent text-white py-2 pl-6 pr-12 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                        onChange={(event) => setQuery(event.target.value)}
-                        displayValue={(person) => person?.name}
-                        placeholder="Search items, collections and accounts"
-                      />
-                      <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-4 focus:outline-none">
-                        <SearchIcon
-                          className="h-5 w-5 text-gray-400"
-                          aria-hidden="true"
-                        />
-                      </Combobox.Button>
-
-                      {filteredPeople.length > 0 && (
-                        <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                          {filteredPeople.map((person) => (
-                            <Combobox.Option
-                              key={person.id}
-                              value={person}
-                              className={({ active }) =>
-                                classNames(
-                                  "relative cursor-default select-none py-2 pl-3 pr-9",
-                                  active
-                                    ? "bg-indigo-600 text-white"
-                                    : "text-gray-900"
-                                )
-                              }
-                            >
-                              {({ active, selected }) => (
-                                <>
-                                  <div className="flex items-center">
-                                    <img
-                                      src={person.imageUrl}
-                                      alt=""
-                                      className="h-6 w-6 flex-shrink-0 rounded-full"
-                                    />
-                                    <span
-                                      className={classNames(
-                                        "ml-3 truncate",
-                                        selected && "font-semibold"
-                                      )}
-                                    >
-                                      {person.name}
-                                    </span>
-                                  </div>
-
-                                  {selected && (
-                                    <span
-                                      className={classNames(
-                                        "absolute inset-y-0 right-0 flex items-center pr-4",
-                                        active
-                                          ? "text-white"
-                                          : "text-indigo-600"
-                                      )}
-                                    >
-                                      <CheckIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  )}
-                                </>
-                              )}
-                            </Combobox.Option>
-                          ))}
-                        </Combobox.Options>
-                      )}
-                    </div>
-                  </Combobox>
                   <div
-                    onClick={() => setOpenAuthModal(true)}
-                    className="cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-[#3D00B7] hover:bg-[#3d00b7a1]"
+                    onClick={() => window.open(process.env.MARKETPLACE_URL)}
+                    className=" cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-[#3D00B7] hover:bg-[#3d00b7a1]"
                   >
-                    Sign in Account
+                    <div className="flex items-center space-x-2 text-[#ff9345]">
+                      <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M12 1.25A3.75 3.75 0 0 0 8.25 5v1a4 4 0 0 0-3.862 3.263l-1.5 8A4 4 0 0 0 6.82 22h10.36a4 4 0 0 0 3.932-4.737l-1.5-8A4 4 0 0 0 15.75 6V5A3.75 3.75 0 0 0 12 1.25ZM14.25 6V5a2.25 2.25 0 0 0-4.5 0v1h4.5Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>
+                      <span className="font-medium text-white">
+                        Marketplace
+                      </span>
+                    </div>
                   </div>
                 </div>
               </nav>
@@ -251,11 +158,24 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="mt-6 px-5">
-                      <Link href="/auth/login">
-                        <div className="cursor-pointer block text-center w-full py-3 px-4 rounded-lg shadow bg-[#3D00B7] hover:bg-[#3d00b7a1] text-white font-medium">
-                          Sign in Account
+                      <div
+                        onClick={() => window.open(process.env.MARKETPLACE_URL)}
+                        className="w-full cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-[#3D00B7] hover:bg-[#3d00b7a1]"
+                      >
+                        <div className="flex items-center space-x-2 text-[#ff9345]">
+                          <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M12 1.25A3.75 3.75 0 0 0 8.25 5v1a4 4 0 0 0-3.862 3.263l-1.5 8A4 4 0 0 0 6.82 22h10.36a4 4 0 0 0 3.932-4.737l-1.5-8A4 4 0 0 0 15.75 6V5A3.75 3.75 0 0 0 12 1.25ZM14.25 6V5a2.25 2.25 0 0 0-4.5 0v1h4.5Z"
+                              fill="currentColor"
+                            ></path>
+                          </svg>
+                          <span className="font-medium text-white text-md">
+                            Marketplace
+                          </span>
                         </div>
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -277,12 +197,23 @@ export default function Home() {
                   </div>
                   <div className="mt-12 sm:max-w-lg sm:w-full sm:flex">
                     <div className="mt-4 sm:mt-0">
+                      {/* Desktop Breakpoints */}
                       <button
-                        type="submit"
-                        className="block w-full rounded-full border border-transparent px-5 py-3 bg-[#3D00B7] hover:bg-[#3d00b7a1] text-base font-medium text-white shadow focus:outline-none  sm:px-10"
+                        type="button"
+                        onClick={() => setOpenAuthModal(true)}
+                        className="hidden sm:block w-full rounded-full border border-transparent px-5 py-3 bg-[#3D00B7] hover:bg-[#3d00b7a1] text-base font-medium text-white shadow focus:outline-none  sm:px-10"
                       >
-                        Explore Now
+                        Play Now
                       </button>
+                      {/* Mobile Breakpoints */}
+                      <Link href="/auth/login">
+                        <button
+                          type="button"
+                          className="block sm:hidden w-full rounded-full border border-transparent px-5 py-3 bg-[#3D00B7] hover:bg-[#3d00b7a1] text-base font-medium text-white shadow focus:outline-none  sm:px-10"
+                        >
+                          Play Now
+                        </button>
+                      </Link>
                     </div>
                   </div>
                   <div className="mt-6">
@@ -393,6 +324,83 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            {/* Why pokechain */}
+            <div className="relative py-16 sm:py-24 lg:py-16">
+              <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+                <span className="text-transparent font-extrabold tracking-tight text-5xl bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
+                  Why Pokechain?
+                </span>
+                <div className="mt-32 flex sm:items-center sm:justify-between flex-col xl:flex-row">
+                  <img
+                    className="w-auto h-auto"
+                    alt=""
+                    src="/assets/images/four-pokemon.png"
+                  />
+
+                  <div
+                    className="w-[50rem] h-[50rem] mr-1 flex sm:ml-80 md:ml-52 lg:ml-10 xl:ml-28 bg-[length:38%_80%] image-under340 sm:bg-[length:60%_100%] md:bg-[length:80%_100%] lg:bg-[length:100%_100%]"
+                    style={{
+                      backgroundImage: "url('/assets/images/bg-board.png')",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="width-under340 w-[19rem] sm:w-[30rem] md:w-[42rem] lg:w-full">
+                      <div className="flex mt-5 sm:mt-6 margin-under340 lg:mt-7 items-center justify-center">
+                        <span className="text-lg sm:text-3xl lg:text-4xl font-extrabold text-white">
+                          PLAY TO EARN
+                        </span>
+                      </div>
+
+                      <div className="px-12 py-14 sm:p-16 md:px-20 md:py-10 md:mt-2 flex flex-col">
+                        <span className="flex items-center justify-center text-white text-lg sm:text-2xl lg:text-3xl text-transparent font-extrabold tracking-tight  bg-clip-text bg-gradient-to-r from-[#b73091] to-[#5B68DF]">
+                          Free to play to earn Pokechain tokens by playing the
+                          game.
+                        </span>
+                        <div className="w-full lg:mt-2">
+                          <div className="flex flex-col items-start justify-start p-4">
+                            <div className="flow-root">
+                              <ul role="list" className="-mb-8">
+                                {whyPokechainList.map((item, itemIdx) => (
+                                  <li key={item.id}>
+                                    <div className="relative pb-2 sm:pb-16 ">
+                                      {itemIdx !==
+                                      whyPokechainList.length - 1 ? (
+                                        <span
+                                          className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-white"
+                                          aria-hidden="true"
+                                        />
+                                      ) : null}
+                                      <div className="relative flex items-start space-x-3">
+                                        <div className="relative">
+                                          <img
+                                            className="w-10 h-10 object-cover rounded-full"
+                                            src="/assets/images/pokeball.png"
+                                            alt=""
+                                          />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                          <div>
+                                            <div className="text-md sm:text-3xl text-left lg:ml-2">
+                                              <div className="font-medium text-[#BB5A01]">
+                                                {item.description}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Feature section with grid */}
             <div className="relative bg-white py-16 sm:py-24 lg:py-32">
@@ -429,14 +437,186 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Weeks in pokechain */}
+            <div className="relative py-16 sm:py-12 lg:py-32 bg-gray-900">
+              <div className="relative ">
+                <div className="cursor-pointer flex flex-col space-y-8 lg:flex-row lg:space-y-0 items-center xl:justify-between text-left mx-auto max-w-md px-4 sm:max-w-4xl sm:px-6 lg:px-8 lg:max-w-7xl">
+                  <div className="flex-col sm:items-center flex sm:justify-center lg:justify-start lg:items-start">
+                    <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+                      This week in pokechain
+                    </p>
+                    <p className="text-md font-medium text-slate-500">
+                      General stats from the past 1 weeks in the pokechain
+                      universe.
+                    </p>
+                  </div>
+                  <div className="max-w-md px-4 space-y-8 sm:space-y-0 grid gap-4 sm:max-w-4xl sm:px-6 lg:px-8 sm:grid-cols-2 md:max-w-5xl md:grid-cols-3 lg:grid-cols-3 lg:max-w-7xl">
+                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                      <div className="absolute top-0 left-0 -mt-4 ml-4">
+                        <img
+                          className="w-10 h-10 object-cover rounded-full"
+                          alt=""
+                          src="/assets/images/pokeball.png"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <span className="text-md font-extrabold text-slate-400">
+                          New Pokemon
+                        </span>
+                      </div>
+                      <div className="mt-2">
+                        <span className="text-xl font-extrabold text-white">
+                          15,669
+                        </span>
+                      </div>
+                    </div>
+                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                      <div className="absolute top-0 left-0 -mt-4 ml-4">
+                        <img
+                          className="w-10 h-10 object-cover rounded-full"
+                          alt=""
+                          src="/assets/images/battles-stats.png"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <span className="text-md font-extrabold text-slate-400">
+                          Origins Battle
+                        </span>
+                      </div>
+                      <div className="mt-2">
+                        <span className="text-xl font-extrabold text-white">
+                          3,120,908
+                        </span>
+                      </div>
+                    </div>
+                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                      <div className="absolute top-0 left-0 -mt-4 ml-4">
+                        <img
+                          className="w-10 h-10 object-cover rounded-full"
+                          alt=""
+                          src="/assets/images/sales-stats.png"
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <span className="text-md font-extrabold text-slate-400">
+                          Sales Volume
+                        </span>
+                      </div>
+                      <div className="mt-2">
+                        <span className="text-xl font-extrabold text-white">
+                          $669
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Overall stats */}
+            <div className="relative py-16 sm:py-24 lg:py-16 bg-gray-900">
+              <div className="relative">
+                <div className="flex flex-col lg:flex-row items-center justify-between text-left mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+                    Overall stats
+                  </p>
+                </div>
+                <div className="mt-12 mx-auto max-w-xs flex flex-col space-y-4 sm:space-y-0 items-center px-4 sm:grid gap-4 sm:max-w-lg sm:px-8 lg:px-8 sm:grid-cols-2 md:max-w-3xl md:grid-cols-3 lg:grid-cols-4 lg:max-w-7xl">
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                    <div className="absolute top-0 left-0 -mt-4 ml-4">
+                      <img
+                        className="w-10 h-10 object-cover rounded-full"
+                        alt=""
+                        src="/assets/images/pokeball.png"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <span className="text-md font-extrabold text-slate-400">
+                        Total Pokemon
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <span className="text-xl font-extrabold text-white">
+                        100
+                      </span>
+                    </div>
+                  </div>
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                    <div className="absolute top-0 left-0 -mt-4 ml-4">
+                      <img
+                        className="w-10 h-10 object-cover rounded-full"
+                        alt=""
+                        src="/assets/images/stats-owners.png"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <span className="text-md font-extrabold text-slate-400">
+                        Total Owners
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <span className="text-xl font-extrabold text-white">
+                        100
+                      </span>
+                    </div>
+                  </div>
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                    <div className="absolute top-0 left-0 -mt-4 ml-4">
+                      <img
+                        className="w-10 h-10 object-cover rounded-full"
+                        alt=""
+                        src="/assets/images/sales-stats.png"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <span className="text-md font-extrabold text-slate-400">
+                        Total Volume
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <span className="text-xl font-extrabold text-white">
+                        1,890,382
+                      </span>
+                    </div>
+                  </div>
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                    <div className="absolute top-0 left-0 -mt-4 ml-4">
+                      <img
+                        className="w-10 h-10 object-cover rounded-full"
+                        alt=""
+                        src="/assets/images/stats-transactions.png"
+                      />
+                    </div>
+                    <div className="mt-4">
+                      <span className="text-md font-extrabold text-slate-400">
+                        Transactions
+                      </span>
+                    </div>
+                    <div className="mt-2">
+                      <span className="text-xl font-extrabold text-white">
+                        1,890,382
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             {/* Hot Auctions */}
-            <div className="relative  py-16 sm:py-24 lg:py-32">
+            <div className="relative  py-16 sm:py-24 lg:py-32 bg-gray-900">
               <div className="relative">
                 <div className="cursor-pointer flex items-center justify-between text-left mx-auto max-w-md px-4 sm:max-w-4xl sm:px-6 lg:px-8 lg:max-w-7xl">
                   <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
                     Hot Auctions
                   </p>
-                  <p className="flex items-center text-lg font-medium text-white tracking-tight">
+                  <p
+                    className="flex items-center text-lg font-medium text-white tracking-tight"
+                    onClick={() =>
+                      window.open(
+                        process.env.MARKETPLACE_URL + "/hot-auctions",
+                        "_blank"
+                      )
+                    }
+                  >
                     View All <ArrowRightIcon className="ml-4 w-5 h-5" />
                   </p>
                 </div>
@@ -522,214 +702,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* Discover NFTS */}
-            <div className="relative  py-16 sm:py-24 lg:py-32">
-              <div className="relative">
-                <div className="flex flex-col lg:flex-row items-center justify-between text-left mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                    Discover More Pokemon NFTS
-                  </p>
-                  <div className="flex items-center space-x-6 md:space-x-12 mt-8 lg:mt-0">
-                    <div className="flex items-center space-x-2 text-white cursor-pointer">
-                      <AdjustmentsIcon className="w-5 h-5" />
-                      <span>Category</span>
-                    </div>
-                    <div className="hidden sm:flex items-center space-x-2 text-white cursor-pointer">
-                      <span>Cheapest</span>
-                      <ChevronDownIcon className="w-5 h-5" />
-                    </div>
-                    <div className="hidden sm:flex items-center space-x-2 text-white cursor-pointer">
-                      <span>Newest</span>
-                      <ChevronDownIcon className="w-5 h-5" />
-                    </div>
-                    <div className="flex items-center space-x-2 cursor-pointer w-full rounded-full border border-transparent px-8  py-1 bg-gradient-to-r from-[#9B51E0] to-[#3081ED] text-base font-medium text-white shadow focus:outline-none  sm:px-10">
-                      <FilterIcon className="w-5 h-5" />
-                      <span className="">Filter</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-12 mx-auto max-w-md px-4 grid gap-4 sm:max-w-4xl sm:px-6 lg:px-8 sm:grid-cols-2  md:max-w-5xl md:grid-cols-3 lg:grid-cols-4 lg:max-w-7xl">
-                  {new Array(8).fill(0).map((_, i) => (
-                    <div
-                      className="rounded-3xl bg-gradient-to-r from-[#73E0A9] to-[#5B68DF] "
-                      style={{ padding: "1.3px" }}
-                      key={i}
-                    >
-                      <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-gray-900">
-                        <div
-                          className="rounded-3xl shadow-md  bg-gradient-to-r from-[#73E0A9] to-[#5B68DF] "
-                          style={{ padding: "1.3px" }}
-                        >
-                          <div className="px-8 py-8 sm:px-6 rounded-3xl shadow-md bg-gray-800 relative">
-                            <div className="flex items-center justify-center">
-                              <img
-                                className="w-40 object-cover h-full -mt-10"
-                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
-                                alt=""
-                              />
-                            </div>
-                            <div className="w-full mt-3 flex items-center justify-center absolute">
-                              <div
-                                style={{ padding: "1.3px" }}
-                                className="bg-gradient-to-r mr-12 from-[#73E0A9] to-[#5B68DF] rounded-full "
-                              >
-                                <img
-                                  className="w-10 h-10  rounded-full"
-                                  src="/assets/images/profile.png"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="mt-7">
-                          <div className="flex items-center justify-center">
-                            <div className="flex-col w-full">
-                              <div className="flex items-center justify-center">
-                                <div className="text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
-                                  ZombieLab
-                                </div>
-                                <img
-                                  src="/assets/images/verified-user.png"
-                                  className="w-5 h-5 ml-2"
-                                  alt=""
-                                />
-                              </div>
-                              <div className="relative mt-2">
-                                <div
-                                  className="absolute inset-0 flex items-center"
-                                  aria-hidden="true"
-                                >
-                                  <div className="w-full border-t border-[#5B68DF]" />
-                                </div>
-                              </div>
-                              <div className="flex items-center justify-between space-x-2 w-full">
-                                <span className="text-white text-md font-medium mt-2">
-                                  Bulbasaur
-                                </span>
-                                <div className="mt-2 text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
-                                  $30
-                                </div>
-                              </div>
-                              <div className="mt-3">
-                                <div className="flex items-center justify-center space-x-2 cursor-pointer w-full rounded-full border border-transparent px-8  py-1 bg-gradient-to-r from-[#511d82] to-[#275a9c] text-base font-medium text-white shadow focus:outline-none  sm:px-10">
-                                  Buy now
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="w-full mt-20 flex items-center justify-center">
-                  <div
-                    style={{ padding: "1.3px" }}
-                    className="flex items-center justify-center space-x-2 cursor-pointer w-max rounded-full border border-transparent  bg-gradient-to-r from-[#511d82] to-[#275a9c] text-base font-medium text-white shadow focus:outline-none"
-                  >
-                    <div className="flex items-center justify-center space-x-2 cursor-pointer w-max rounded-full border border-transparent px-8  py-1 bg-gray-900 hover:bg-gray-800 text-base font-medium text-white shadow focus:outline-none  sm:px-10">
-                      Load More
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </main>
-          <footer className="bg-gray-900" aria-labelledby="footer-heading">
-            <h2 id="footer-heading" className="sr-only">
-              Footer
-            </h2>
-            <div className="max-w-md mx-auto pt-12 px-4 sm:max-w-7xl sm:px-6 lg:pt-16 lg:px-8">
-              <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-                <div className="space-y-8 xl:col-span-1">
-                  <img
-                    className="h-10"
-                    src="/assets/images/icons.png"
-                    alt="Company name"
-                  />
-                  <p className="text-gray-500 text-base">
-                    Making the world NFT Game a better to free to play.
-                  </p>
-                  <div className="flex space-x-6">
-                    {footerNavigation.social.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="text-gray-400 hover:text-gray-500"
-                      >
-                        <span className="sr-only">{item.name}</span>
-                        <item.icon className="h-6 w-6" aria-hidden="true" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-                  <div className="md:grid md:grid-cols-2 md:gap-8">
-                    <div>
-                      <div className="text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
-                        Marketplace
-                      </div>
-                      <ul role="list" className="mt-4 space-y-4">
-                        {footerNavigation.marketplace.map((item) => (
-                          <li key={item.name}>
-                            <a
-                              href={item.href}
-                              className="text-base text-gray-500 hover:text-gray-900"
-                            >
-                              {item.name}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mt-12 md:mt-0">
-                      <div className="text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
-                        Stats
-                      </div>
-                      <ul role="list" className="mt-4 space-y-4">
-                        {footerNavigation.stats.map((item) => (
-                          <li key={item.name}>
-                            <a
-                              href={item.href}
-                              className="text-base text-gray-500 hover:text-gray-900"
-                            >
-                              {item.name}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="md:grid md:grid-cols-2 md:gap-8">
-                    <div>
-                      <div className="text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
-                        Resources
-                      </div>
-                      <ul role="list" className="mt-4 space-y-4">
-                        {footerNavigation.resources.map((item) => (
-                          <li key={item.name}>
-                            <a
-                              href={item.href}
-                              className="text-base text-gray-500 hover:text-gray-900"
-                            >
-                              {item.name}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-12 border-t border-gray-200 py-8">
-                <p className="text-base text-white xl:text-center">
-                  &copy; 2022 Pokechain, Inc. All rights reserved.
-                </p>
-              </div>
-            </div>
-          </footer>
         </div>
       </div>
       <LoginModal setOpen={setOpenAuthModal} open={openAuthModal} />
