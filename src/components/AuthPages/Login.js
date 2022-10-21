@@ -7,6 +7,12 @@ import Link from "next/link";
 
 export default function LoginModal({ open, setOpen }) {
   const cancelButtonRef = useRef(null);
+  const [form, setForm] = useState({
+    usernameORemail: "",
+    password: "",
+  });
+
+  const handleSubmit = () => {};
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -92,9 +98,16 @@ export default function LoginModal({ open, setOpen }) {
                           <input
                             id="email"
                             name="email"
-                            type="email"
+                            type="text"
                             autoComplete="email"
                             required
+                            value={form.usernameORemail}
+                            onChange={(e) =>
+                              setForm({
+                                ...form,
+                                usernameORemail: e.target.value,
+                              })
+                            }
                             className="appearance-none block w-full px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
@@ -114,6 +127,10 @@ export default function LoginModal({ open, setOpen }) {
                             type="password"
                             autoComplete="current-password"
                             required
+                            value={form.password}
+                            onChange={(e) =>
+                              setForm({ ...form, password: e.target.value })
+                            }
                             className="appearance-none block w-full px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>

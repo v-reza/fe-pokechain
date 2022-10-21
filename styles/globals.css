@@ -39,4 +39,15 @@ a {
   background-color: #a0aec0;
 }
 
-
+@media (max-width: 636px) and (min-width: 390px) {
+  .image-under340 {
+    background-size: 48% 50%;
+    margin-left: 2rem;
+  }
+  .width-under340 {
+    width: 24.8rem;
+  }
+  .margin-under340 {
+    margin-top: 0.5rem;
+  }
+}

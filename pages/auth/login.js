@@ -1,6 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 export default function Login() {
+  const [form, setForm] = useState({
+    usernameORemail: "",
+    password: "",
+  });
   return (
     <>
       <Head>
@@ -83,9 +89,13 @@ export default function Login() {
                       <input
                         id="email"
                         name="email"
-                        type="email"
+                        type="text"
                         autoComplete="email"
                         required
+                        value={form.usernameORemail}
+                        onChange={(e) =>
+                          setForm({ ...form, usernameORemail: e.target.value })
+                        }
                         className="appearance-none block w-full px-3 py-1 sm:py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -105,6 +115,10 @@ export default function Login() {
                         type="password"
                         autoComplete="current-password"
                         required
+                        value={form.password}
+                        onChange={(e) =>
+                          setForm({ ...form, password: e.target.value })
+                        }
                         className="appearance-none block w-full px-3 py-1 sm:py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>

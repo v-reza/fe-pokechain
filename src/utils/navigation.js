@@ -1,9 +1,14 @@
-import { ChartSquareBarIcon, CreditCardIcon, ShieldCheckIcon } from "@heroicons/react/solid";
+import {
+  ChartSquareBarIcon,
+  CreditCardIcon,
+  ShieldCheckIcon,
+} from "@heroicons/react/solid";
 
 const navigation = [
-  { name: "Marketplace", href: "#" },
-  { name: "Resource", href: "#" },
-  { name: "About", href: "#" },
+  { name: "Home", href: "/" },
+  { name: "Ranking", href: "#" },
+  { name: "News", href: "#" },
+  { name: "Teams", href: "#" },
 ];
 const features = [
   {
@@ -105,4 +110,4 @@ const footerNavigation = {
   ],
 };
 
-export { navigation, features, footerNavigation}
+export { navigation, features, footerNavigation };

@@ -9,7 +9,9 @@ const nextConfig = {
   },
   env: {
     CI: false,
-    GENERATE_SOURCEMAP: false
+    GENERATE_SOURCEMAP: false,
+    MARKETPLACE_URL: "https://marketplace-pokechains.vercel.app/",
+    APP_URL: "https://app-pokechain.vercel.app/",
   }
 }
 
