@@ -108,7 +108,7 @@ export default function LoginModal({ open, setOpen }) {
                                 usernameORemail: e.target.value,
                               })
                             }
-                            className="appearance-none block w-full px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="appearance-none block w-full text-white px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
                       </div>
@@ -131,7 +131,7 @@ export default function LoginModal({ open, setOpen }) {
                             onChange={(e) =>
                               setForm({ ...form, password: e.target.value })
                             }
-                            className="appearance-none block w-full px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="appearance-none block w-full text-white px-3 py-1 sm:py-2 bg-slate-700 border border-slate-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
                         </div>
                       </div>

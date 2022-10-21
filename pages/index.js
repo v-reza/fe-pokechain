@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/inline-script-id */
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
@@ -25,7 +26,6 @@ const whyPokechainList = [
 export default function Home() {
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const router = useRouter();
-
   return (
     <>
       <div
@@ -183,14 +183,17 @@ export default function Home() {
             </Transition>
           </Popover>
           <main>
-            <div className="overflow-hidden sm:pt-12 lg:relative lg:py-20">
-              <div className="mx-auto mt-8 sm:mt-0 sm:px-6 w-full flex items-center justify-center bg-[length: 100%_100%] sm:rounded-[5rem] rounded-b-3xl  shadow-xl" style={{
-                backgroundImage: "url('/assets/images/bg-pokemon.png')",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                opacity: "0.8"
-              }}>
+            <div className="overflow-hidden sm:pt-12 lg:relative lg:py-20" data-aos="fade-up" data-aos-duration="1000">
+              <div
+                className="mx-auto mt-8 sm:mt-0 sm:px-6 w-full flex items-center justify-center bg-[length: 100%_100%] sm:rounded-[5rem] rounded-b-3xl  shadow-xl"
+                style={{
+                  backgroundImage: "url('/assets/images/bg-pokemon.png')",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  opacity: "0.8",
+                }}
+              >
                 <div className="mt-20 sm:mt-0 py-56 w-full flex flex-col items-center justify-center">
                   <div className="">
                     <h1 className="text-transparent font-extrabold tracking-tight text-3xl px-4 sm:px-0 bg-clip-text bg-gradient-to-r from-[#31e38a] to-[#bff806] sm:text-5xl">
@@ -261,8 +264,8 @@ export default function Home() {
               </div>
             </div>
             {/* Why pokechain */}
-            <div className="relative py-16 sm:py-24 lg:py-16">
-              <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+            <div className="relative py-16 sm:py-24 lg:py-16" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+              <div className="mx-auto max-w-md px-4 padding-under340 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
                 <span className="text-transparent font-extrabold tracking-tight text-5xl bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
                   Why Pokechain?
                 </span>
@@ -374,20 +377,20 @@ export default function Home() {
             </div>
 
             {/* Weeks in pokechain */}
-            <div className="relative py-16 sm:py-12 lg:py-32 bg-gray-900">
+            <div className="relative py-16 sm:py-12 lg:py-32 bg-gray-900" data-aos="fade-right">
               <div className="relative ">
-                <div className="cursor-pointer flex flex-col space-y-8 lg:flex-row lg:space-y-0 items-center xl:justify-between text-left mx-auto max-w-md px-4 sm:max-w-4xl sm:px-6 lg:px-8 lg:max-w-7xl">
-                  <div className="flex-col sm:items-center flex sm:justify-center lg:justify-start lg:items-start">
+                <div className="cursor-pointer flex flex-col space-y-8 xl:flex-row xl:space-y-0 items-center lg:items-start xl:items-center xl:justify-between text-lef mx-auto max-w-md px-4 sm:max-w-4xl sm:px-6 lg:px-8 lg:max-w-7xl">
+                  <div className="flex-col flex justify-center  items-center  lg:items-start lg:justify-start lg:text-left">
                     <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
                       This week in pokechain
                     </p>
-                    <p className="text-md font-medium text-slate-500">
+                    <p className="text-md font-medium text-slate-500 text-center xl:text-left">
                       General stats from the past 1 weeks in the pokechain
                       universe.
                     </p>
                   </div>
-                  <div className="max-w-md px-4 space-y-8 sm:space-y-0 grid gap-4 sm:max-w-4xl sm:px-6 lg:px-8 sm:grid-cols-2 md:max-w-5xl md:grid-cols-3 lg:grid-cols-3 lg:max-w-7xl">
-                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                  <div className="max-w-md space-y-8 sm:space-y-0 grid gap-4 sm:max-w-4xl  xl:px-8 sm:grid-cols-2 md:max-w-5xl md:grid-cols-3 lg:grid-cols-3 lg:max-w-7xl">
+                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56" data-aos="flip-right" data-aos-duration="300">
                       <div className="absolute top-0 left-0 -mt-4 ml-4">
                         <img
                           className="w-10 h-10 object-cover rounded-full"
@@ -406,7 +409,7 @@ export default function Home() {
                         </span>
                       </div>
                     </div>
-                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56" data-aos="flip-right" data-aos-duration="600">
                       <div className="absolute top-0 left-0 -mt-4 ml-4">
                         <img
                           className="w-10 h-10 object-cover rounded-full"
@@ -425,7 +428,7 @@ export default function Home() {
                         </span>
                       </div>
                     </div>
-                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                    <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56" data-aos="flip-right" data-aos-duration="900">
                       <div className="absolute top-0 left-0 -mt-4 ml-4">
                         <img
                           className="w-10 h-10 object-cover rounded-full"
@@ -450,7 +453,7 @@ export default function Home() {
             </div>
 
             {/* Overall stats */}
-            <div className="relative py-16 sm:py-24 lg:py-16 bg-gray-900">
+            <div className="relative py-16 sm:py-24 lg:py-16 bg-gray-900" data-aos="fade-left">
               <div className="relative">
                 <div className="flex flex-col lg:flex-row items-center justify-between text-left mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
                   <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
@@ -458,7 +461,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="mt-12 mx-auto max-w-xs flex flex-col space-y-4 sm:space-y-0 items-center px-4 sm:grid gap-4 sm:max-w-lg sm:px-8 lg:px-8 sm:grid-cols-2 md:max-w-3xl md:grid-cols-3 lg:grid-cols-4 lg:max-w-7xl">
-                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56" data-aos="flip-left" data-aos-duration="300">
                     <div className="absolute top-0 left-0 -mt-4 ml-4">
                       <img
                         className="w-10 h-10 object-cover rounded-full"
@@ -477,7 +480,7 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56" data-aos="flip-left" data-aos-duration="600">
                     <div className="absolute top-0 left-0 -mt-4 ml-4">
                       <img
                         className="w-10 h-10 object-cover rounded-full"
@@ -496,7 +499,7 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56" data-aos="flip-left" data-aos-duration="900">
                     <div className="absolute top-0 left-0 -mt-4 ml-4">
                       <img
                         className="w-10 h-10 object-cover rounded-full"
@@ -515,7 +518,7 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56">
+                  <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-slate-800 relative w-56" data-aos="flip-left" data-aos-duration="1200">
                     <div className="absolute top-0 left-0 -mt-4 ml-4">
                       <img
                         className="w-10 h-10 object-cover rounded-full"
@@ -538,7 +541,7 @@ export default function Home() {
               </div>
             </div>
             {/* Hot Auctions */}
-            <div className="relative  py-16 sm:py-24 lg:py-32 bg-gray-900">
+            <div className="relative  py-16 sm:py-24 lg:py-32 bg-gray-900" data-aos="fade-up">
               <div className="relative">
                 <div className="cursor-pointer flex items-center justify-between text-left mx-auto max-w-md px-4 sm:max-w-4xl sm:px-6 lg:px-8 lg:max-w-7xl">
                   <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
@@ -562,6 +565,8 @@ export default function Home() {
                       className="rounded-3xl bg-gradient-to-r from-[#73E0A9] to-[#5B68DF] "
                       style={{ padding: "1.3px" }}
                       key={i}
+                      data-aos="zoom-in"
+                      data-aos-duration={`${i * 300}`}
                     >
                       <div className="px-8 py-5 sm:px-6 rounded-3xl shadow-md bg-gray-900">
                         <div
