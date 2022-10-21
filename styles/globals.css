@@ -41,9 +41,13 @@ a {
 
 @media (max-width: 636px) and (min-width: 390px) {
   .image-under340 {
-    background-size: 48% 50%;
-    margin-left: 2rem;
+    background-size: 47% 50%;
+    margin-right: 1rem;
   }
+  /* .padding-under340{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  } */
   .width-under340 {
     width: 24.8rem;
   }

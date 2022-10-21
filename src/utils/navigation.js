@@ -8,6 +8,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "Ranking", href: "#" },
   { name: "News", href: "#" },
+  { name: "Forum", href: "#" },
   { name: "Teams", href: "#" },
 ];
 const features = [
