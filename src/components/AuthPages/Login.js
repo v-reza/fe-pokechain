@@ -1,9 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import Link from "next/link";
+import bgPokemon from "@/dist/bg-pokemon.png";
+import lightGreen from "@/dist/light-green.png";
+import lightBlue from "@/dist/light-blue.png";
+import Image from "next/image";
 
 export default function LoginModal({ open, setOpen }) {
   const cancelButtonRef = useRef(null);
@@ -54,8 +57,7 @@ export default function LoginModal({ open, setOpen }) {
             <div
               className="inline-block align-middle bg-gray-900 rounded-2xl sm:rounded-[2rem] px-16 pt-5 pb-4 text-left overflow-hidden shadow-3xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg md:max-w-3xl lg:max-w-4xl sm:w-full sm:p-6"
               style={{
-                backgroundImage:
-                  "url('/assets/images/light-green.png'), url('/assets/images/light-blue.png')",
+                backgroundImage: `url('${lightGreen.src}'), url('${lightBlue.src}')`,
                 backgroundRepeat: "no-repeat",
                 backgroundBlendMode: "saturation",
                 opacity: "80",
@@ -73,11 +75,17 @@ export default function LoginModal({ open, setOpen }) {
               </div>
               <div className="md:grid md:grid-cols-2">
                 <div className="hidden md:block">
-                  <img
-                    className="absolute inset-0 h-full w-96 object-cover"
-                    src="/assets/images/bg-pokemon.png"
-                    alt=""
-                  />
+
+                  <div className="absolute inset-0 h-full w-96">
+                    <Image
+                      alt="background"
+                      src={bgPokemon}
+                      placeholder="blur"
+                      blurDataURL={bgPokemon}
+                      objectFit="cover"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
                 <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-lg">
                   <div className="sm:mx-auto sm:w-full sm:max-w-md">

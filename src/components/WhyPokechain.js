@@ -1,5 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import bgFourPokemon from "@/dist/four-pokemon.png";
+import bgBoard from "@/dist/bg-board.png";
+import bgPokeball from "@/dist/pokeball.png";
+import Image from "next/image";
 const whyPokechainList = [
   {
     id: 1,
@@ -28,16 +32,18 @@ const WhyPokechain = () => {
             Why Pokechain?
           </span>
           <div className="mt-32 flex sm:items-center sm:justify-between flex-col xl:flex-row">
-            <img
-              className="w-auto h-auto"
-              alt=""
-              src="/assets/images/four-pokemon.png"
-            />
-
+            <div className="w-auto h-auto">
+              <Image
+                src={bgFourPokemon}
+                alt="four pokemon"
+                blurDataURL={bgFourPokemon}
+                placeholder="blur"
+              />
+            </div>
             <div
               className="w-[50rem] h-[50rem] mr-1 flex sm:ml-80 md:ml-52 lg:ml-10 xl:ml-28 bg-[length:38%_80%] image-under340 sm:bg-[length:60%_100%] md:bg-[length:80%_100%] lg:bg-[length:100%_100%]"
               style={{
-                backgroundImage: "url('/assets/images/bg-board.png')",
+                backgroundImage: `url('${bgBoard.src}')`,
                 backgroundRepeat: "no-repeat",
               }}
             >
@@ -67,10 +73,14 @@ const WhyPokechain = () => {
                                 ) : null}
                                 <div className="relative flex items-start space-x-3">
                                   <div className="relative">
-                                    <img
-                                      className="w-10 h-10 object-cover rounded-full"
-                                      src="/assets/images/pokeball.png"
-                                      alt=""
+                                    <Image
+                                      src={bgPokeball}
+                                      alt="pokeball"
+                                      blurDataURL={bgPokeball}
+                                      placeholder="blur"
+                                      objectFit="cover"
+                                      width={40}
+                                      height={40}
                                     />
                                   </div>
                                   <div className="min-w-0 flex-1">

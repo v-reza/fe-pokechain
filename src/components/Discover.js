@@ -1,6 +1,7 @@
 import { StarIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import React from 'react'
+import bgPokemon from "@/dist/bg-pokemon.png"
 
 const Discover = ({ setOpenAuthModal }) => {
   return (
@@ -9,7 +10,7 @@ const Discover = ({ setOpenAuthModal }) => {
               <div
                 className="mx-auto mt-4 sm:px-6 w-full flex items-center justify-center bg-[length: 100%_100%] sm:rounded-[5rem] rounded-b-3xl  shadow-xl"
                 style={{
-                  backgroundImage: "url('/assets/images/bg-pokemon.png')",
+                  backgroundImage: `url('${bgPokemon.src}')`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   backgroundPosition: "center",

@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-
+import bgPokeball from "@/dist/pokeball.png";
+import bgBattleStats from "@/dist/battles-stats.png";
+import bgSalesStats from "@/dist/sales-stats.png";
+import Image from "next/image";
 const WeeksInPokechain = () => {
   return (
     <div>
@@ -25,10 +28,14 @@ const WeeksInPokechain = () => {
                 data-aos-duration="300"
               >
                 <div className="absolute top-0 left-0 -mt-4 ml-4">
-                  <img
-                    className="w-10 h-10 object-cover rounded-full"
-                    alt=""
-                    src="/assets/images/pokeball.png"
+                  <Image
+                    src={bgPokeball}
+                    alt="pokeball"
+                    blurDataURL={bgPokeball}
+                    placeholder="blur"
+                    objectFit="cover"
+                    width={40}
+                    height={40}
                   />
                 </div>
                 <div className="mt-4">
@@ -48,10 +55,14 @@ const WeeksInPokechain = () => {
                 data-aos-duration="600"
               >
                 <div className="absolute top-0 left-0 -mt-4 ml-4">
-                  <img
-                    className="w-10 h-10 object-cover rounded-full"
-                    alt=""
-                    src="/assets/images/battles-stats.png"
+                  <Image
+                    src={bgBattleStats}
+                    alt="battle stats"
+                    blurDataURL={bgBattleStats}
+                    placeholder="blur"
+                    objectFit="cover"
+                    width={40}
+                    height={40}
                   />
                 </div>
                 <div className="mt-4">
@@ -71,10 +82,14 @@ const WeeksInPokechain = () => {
                 data-aos-duration="900"
               >
                 <div className="absolute top-0 left-0 -mt-4 ml-4">
-                  <img
-                    className="w-10 h-10 object-cover rounded-full"
-                    alt=""
-                    src="/assets/images/sales-stats.png"
+                  <Image
+                    src={bgSalesStats}
+                    alt="sales stats"
+                    blurDataURL={bgSalesStats}
+                    placeholder="blur"
+                    objectFit="cover"
+                    width={40}
+                    height={40}
                   />
                 </div>
                 <div className="mt-4">

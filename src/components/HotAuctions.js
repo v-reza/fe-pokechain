@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
-
+import bgProfile from "@/dist/profile.png";
+import bgVerifiedUser from "@/dist/verified-user.png";
+import Image from "next/image";
 const HotAuctions = () => {
   return (
     <div>
@@ -51,13 +53,20 @@ const HotAuctions = () => {
                       <div className="w-full mt-3 flex items-center justify-center absolute">
                         <div
                           style={{ padding: "1.3px" }}
-                          className="bg-gradient-to-r mr-12 from-[#73E0A9] to-[#5B68DF] rounded-full "
+                          className="bg-gradient-to-r mr-12 from-[#73E0A9] to-[#5B68DF] rounded-full w-10 h-10"
                         >
-                          <img
-                            className="w-10 h-10  rounded-full"
-                            src="/assets/images/profile.png"
-                            alt=""
-                          />
+                          <div className="-mt-[1px]">
+                            <Image
+                              src={bgProfile}
+                              alt="profile"
+                              blurDataURL={bgProfile}
+                              placeholder="blur"
+                              objectFit="cover"
+                              width={40}
+                              height={40}
+                              style={{ borderRadius: "100%" }}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -66,13 +75,16 @@ const HotAuctions = () => {
                     <div className="flex items-center justify-center">
                       <div className="flex-col w-full">
                         <div className="flex items-center justify-center">
-                          <div className="text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
+                          <div className="mr-2 text-transparent font-medium text-md bg-clip-text bg-gradient-to-r from-[#73E0A9] to-[#5B68DF]">
                             ZombieLab
                           </div>
-                          <img
-                            src="/assets/images/verified-user.png"
-                            className="w-5 h-5 ml-2"
-                            alt=""
+                          <Image
+                            src={bgVerifiedUser}
+                            alt="profile"
+                            blurDataURL={bgVerifiedUser}
+                            objectFit="cover"
+                            width={20}
+                            height={20}
                           />
                         </div>
                         <div className="relative mt-2">

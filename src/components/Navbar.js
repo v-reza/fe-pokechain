@@ -5,6 +5,8 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
+import icon from "@/dist/icons.png"
+import Image from "next/image";
 
 const Navbar = () => {
   const router = useRouter();
@@ -20,10 +22,14 @@ const Navbar = () => {
               <div className="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
                   <span className="sr-only">Workflow</span>
-                  <img
-                    className="h-8 w-auto sm:h-10"
-                    src="/assets/images/icons.png"
-                    alt=""
+                  <Image
+                    src={icon}
+                    alt="icon"
+                    placeholder="blur"
+                    blurDataURL={icon}
+                    objectFit="cover"
+                    width={40}
+                    height={40}
                   />
                 </a>
                 <div className="-mr-2 flex items-center md:hidden">

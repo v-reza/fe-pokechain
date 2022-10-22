@@ -1,5 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import bgPokeball from "@/dist/pokeball.png";
+import bgStatsOwners from "@/dist/stats-owners.png";
+import bgTotalVolume from "@/dist/sales-stats.png";
+import bgStatsTransactions from "@/dist/stats-transactions.png";
+import Image from "next/image";
 
 const OverallStats = () => {
   return (
@@ -21,10 +26,14 @@ const OverallStats = () => {
               data-aos-duration="300"
             >
               <div className="absolute top-0 left-0 -mt-4 ml-4">
-                <img
-                  className="w-10 h-10 object-cover rounded-full"
-                  alt=""
-                  src="/assets/images/pokeball.png"
+                <Image
+                  src={bgPokeball}
+                  alt="pokeball"
+                  blurDataURL={bgPokeball}
+                  placeholder="blur"
+                  objectFit="cover"
+                  width={40}
+                  height={40}
                 />
               </div>
               <div className="mt-4">
@@ -42,10 +51,14 @@ const OverallStats = () => {
               data-aos-duration="600"
             >
               <div className="absolute top-0 left-0 -mt-4 ml-4">
-                <img
-                  className="w-10 h-10 object-cover rounded-full"
-                  alt=""
-                  src="/assets/images/stats-owners.png"
+                <Image
+                  src={bgStatsOwners}
+                  alt="pokeball"
+                  blurDataURL={bgStatsOwners}
+                  placeholder="blur"
+                  objectFit="cover"
+                  width={40}
+                  height={40}
                 />
               </div>
               <div className="mt-4">
@@ -63,10 +76,14 @@ const OverallStats = () => {
               data-aos-duration="900"
             >
               <div className="absolute top-0 left-0 -mt-4 ml-4">
-                <img
-                  className="w-10 h-10 object-cover rounded-full"
-                  alt=""
-                  src="/assets/images/sales-stats.png"
+                <Image
+                  src={bgTotalVolume}
+                  alt="pokeball"
+                  blurDataURL={bgTotalVolume}
+                  placeholder="blur"
+                  objectFit="cover"
+                  width={40}
+                  height={40}
                 />
               </div>
               <div className="mt-4">
@@ -86,10 +103,14 @@ const OverallStats = () => {
               data-aos-duration="1200"
             >
               <div className="absolute top-0 left-0 -mt-4 ml-4">
-                <img
-                  className="w-10 h-10 object-cover rounded-full"
-                  alt=""
-                  src="/assets/images/stats-transactions.png"
+                <Image
+                  src={bgStatsTransactions}
+                  alt="pokeball"
+                  blurDataURL={bgStatsTransactions}
+                  placeholder="blur"
+                  objectFit="cover"
+                  width={40}
+                  height={40}
                 />
               </div>
               <div className="mt-4">

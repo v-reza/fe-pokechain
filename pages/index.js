@@ -1,12 +1,8 @@
 /* eslint-disable @next/next/inline-script-id */
 /* eslint-disable @next/next/no-img-element */
-import { useRouter } from "next/router";
 import { useState } from "react";
-import {  ArrowRightIcon } from "@heroicons/react/solid";
-import { features } from "@/utils/navigation";
 import Head from "next/head";
 import LoginModal from "@/components/AuthPages/Login";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Discover from "@/components/Discover";
 import WhyPokechain from "@/components/WhyPokechain";
@@ -14,17 +10,18 @@ import FeaturePokechain from "@/components/FeaturePokechain";
 import WeeksInPokechain from "@/components/WeeksInPokechain";
 import OverallStats from "@/components/OverallStats";
 import HotAuctions from "@/components/HotAuctions";
+import lightGreen from "@/dist/light-green.png";
+import lightBlue from "@/dist/light-blue.png";
 
 export default function Home() {
   const [openAuthModal, setOpenAuthModal] = useState(false);
-  const router = useRouter();
   return (
     <>
       <div
         className="bg-gray-900"
         style={{
           backgroundImage:
-            "url('/assets/images/light-green.png'), url('/assets/images/light-blue.png')",
+            `url('${lightGreen.src}'), url('${lightBlue.src}')`,
           backgroundRepeat: "no-repeat",
           backgroundBlendMode: "color",
           backgroundSize: "100% 100%",
