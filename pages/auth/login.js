@@ -2,6 +2,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import lightGreen from "@/dist/light-green.png";
+import lightBlue from "@/dist/light-blue.png";
+import icon from "@/dist/icons.png";
+import Image from "next/image";
+import bgPokemon from "@/dist/bg-pokemon.png";
+
 export default function Login() {
   const [form, setForm] = useState({
     usernameORemail: "",
@@ -16,8 +22,7 @@ export default function Login() {
       <div
         className="min-h-screen flex bg-gray-900"
         style={{
-          backgroundImage:
-            "url('/assets/images/light-green.png'), url('/assets/images/light-blue.png')",
+          backgroundImage: `url('${lightGreen.src}'), url('${lightBlue.src}')`,
           backgroundRepeat: "no-repeat",
           backgroundBlendMode: "saturation",
           opacity: "80",
@@ -26,10 +31,14 @@ export default function Login() {
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
-              <img
-                className="h-12 w-auto"
-                src="/assets/images/icons.png"
-                alt="Pokechain"
+              <Image
+                src={icon}
+                alt="icon"
+                placeholder="blur"
+                blurDataURL={icon}
+                objectFit="cover"
+                width={40}
+                height={40}
               />
               <h2 className="mt-6 text-3xl font-extrabold text-white">
                 Sign in to your account
@@ -153,10 +162,13 @@ export default function Login() {
           </div>
         </div>
         <div className="hidden lg:block relative w-0 flex-1">
-          <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src="/assets/images/bg-pokemon.png"
-            alt=""
+          <Image
+            alt="background"
+            src={bgPokemon}
+            placeholder="blur"
+            blurDataURL={bgPokemon}
+            objectFit="cover"
+            layout="fill"
           />
         </div>
       </div>
